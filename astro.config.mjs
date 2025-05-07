@@ -15,7 +15,8 @@ export default defineConfig({
 
   //Deploy
   base: '/project-000-941/',
-  site: 'https://project-000-941.vercel.app/',
+  // site: 'https://project-000-941.vercel.app/',
+  site: '/',
   integrations: [react(), clerk()],
   output: 'server',
   adapter: vercel()
