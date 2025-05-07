@@ -2,10 +2,9 @@ import data from '@/data/editions-vote.json';
 import '@/styles/Votes.css';
 import { useEffect, useState, type CSSProperties } from 'react';
 
-import { baseUrl } from '@/utils/functions';
 import { ButtonFetch } from '@/components/ButtonFetch';
-const arrowIcon = baseUrl('/assets/arrow.png');
-const youtubeIcon = baseUrl('/assets/brand-youtube.svg');
+const arrowIcon = '/assets/arrow.png';
+const youtubeIcon = '/assets/brand-youtube.svg';
 const { length: dataLength } = data;
 type ArrayOfArray = Array<Array<string>>;
 const MAX_VOTES = 4;
@@ -169,7 +168,7 @@ function Candidates({ candidates, handleVote }: CandidatesProps) {
     >
       <img
         className='cardImage'
-        src={`${baseUrl(`/streamer-assets/${image}`)}`}
+        src={`/streamer-assets/${image}`}
         alt={name}
       />
       <p className='description'>{name}</p>
@@ -214,7 +213,7 @@ function FinalVotes({
       >
         <img
           className='cardImage'
-          src={`${baseUrl(`/streamer-assets/${image}`)}`}
+          src={`/streamer-assets/${image}`}
           alt={categoryName}
         />
         <p className='description'>{categoryName}</p>
