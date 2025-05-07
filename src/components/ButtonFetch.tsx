@@ -1,4 +1,9 @@
-export function ButtonFetch() {
+interface ButtonProps {
+  hiddenButton: () => void
+}
+
+export function ButtonFetch({ hiddenButton } : ButtonProps) {
+
   async function handleClick() {
     const eslandVotes = localStorage.getItem('eslandVotes');
     const options = {
@@ -14,6 +19,9 @@ export function ButtonFetch() {
       .then(res => {
         if (res === 'ok') {
           alert('Tus Votos fueron Enviados corectamente');
+          const $button = document.querySelector('.the-super-ultra-button');
+          $button?.classList.add('invisible');
+          hiddenButton();
           return;
         }
       })
@@ -23,7 +31,7 @@ export function ButtonFetch() {
   }
 
   return (
-    <button className='button' onClick={handleClick}>
+    <button className='button the-super-ultra-button' onClick={handleClick}>
       <div className='blob1'></div>
       <div className='blob2'></div>
       <div className='inner'>Envia Tus Votos</div>

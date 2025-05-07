@@ -1,6 +1,6 @@
 import data from '@/data/editions-vote.json';
 import '@/styles/Votes.css';
-import { useEffect, useState, type CSSProperties } from 'react';
+import { useEffect, useRef, useState, type CSSProperties } from 'react';
 
 import { ButtonFetch } from '@/components/ButtonFetch';
 const arrowIcon = '/assets/arrow.png';
@@ -16,6 +16,7 @@ export function Votes({ children }: any) {
   const [arrayVotes, setArrayVotes] = useState<ArrayOfArray>(
     Array.from({ length: dataLength }, _ => [])
   );
+  const itWasCliked = useRef(false);
 
   useEffect(() => {
     const votesFromLocalStorage = localStorage.getItem('eslandVotes');
@@ -73,6 +74,10 @@ export function Votes({ children }: any) {
     setIndex(num);
   }
 
+  function hiddenButton() {
+    itWasCliked.current = true;
+  }
+
   function restIndex() {
     const prevIndex = (index - 1 + dataLength) % dataLength;
     setIndex(prevIndex);
@@ -103,10 +108,14 @@ export function Votes({ children }: any) {
       <h1 className='title'>
         {index !== LAST_INDEX ? (
           categoryName
+        ) : itWasCliked.current ? (
+          <>TUS VOTOS FINALES</>
         ) : (
           <>
-            'TUS VOTOS FINALES'
-            <ButtonFetch />
+          TUS VOTOS FINALES
+            <ButtonFetch
+              hiddenButton={hiddenButton}
+            />
           </>
         )}
       </h1>
@@ -166,11 +175,7 @@ function Candidates({ candidates, handleVote }: CandidatesProps) {
       onClick={handleVote}
       style={{ '--d': `${index * 0.1}s` } as CSSProperties}
     >
-      <img
-        className='cardImage'
-        src={`/streamer-assets/${image}`}
-        alt={name}
-      />
+      <img className='cardImage' src={`/streamer-assets/${image}`} alt={name} />
       <p className='description'>{name}</p>
       <a href={link ?? '/votes'} className='link videoLink'>
         <img src={youtubeIcon} alt='Youtube Icon' />
