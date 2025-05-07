@@ -1,0 +1,43 @@
+---
+import '@/styles/global.css';
+import { baseUrl } from '@/utils/functions';
+const favicon = baseUrl('/assets/favicon.webp');
+---
+
+<!doctype html>
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width' />
+    <link rel='icon' type='image/svg+xml' href={favicon} />
+    <title>Vota Por Tus Creadores De Contenido Preferidos</title>
+  </head>
+  <body>
+    <div class='background-grid'></div>
+    <slot />
+  </body>
+</html>
+
+<style>
+  .background-grid {
+    position: absolute;
+    inset: 0;
+    z-index: -10;
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    background-image: linear-gradient(
+        to right,
+        #f0f0f0 0.1vmax,
+        transparent 0.1vmax
+      ),
+      linear-gradient(to bottom, #f0f0f0 0.1vmax, transparent 0.1vmax);
+    background-size: 6vmax 4vmax;
+  }
+</style>
+
+<script>
+  window.addEventListener('resize', e => {
+    document.title = `${window.innerWidth}`;
+  });
+</script>

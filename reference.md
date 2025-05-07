@@ -1,0 +1,2 @@
+- **Reference / Inspiration ⬇️**
+  - [Esland Web votes Design](https://esland-web.vercel.app/vota/)
